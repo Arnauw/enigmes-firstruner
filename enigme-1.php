@@ -1,5 +1,6 @@
 <?php
 
+// added this so it render
 if (PHP_SAPI !== 'cli') {
     header('Content-Type: text/plain');
 }
@@ -36,19 +37,17 @@ class StudentUtils
     public static function getMention(Student $student): string
     {
         $average = self::calculateAverage($student);
-        if ($average >= 90) {
-            return "Excellent";
-        }
-
-        if ($average >= 75) {
-            return "Bien";
-        }
-
-        if ($average >= 50) {
-            return "Moyen";
-        }
-
-        return "Insuffisant";
+        
+//      return $average >= 90 ? "Excellent" : $average >= 75 ? "Bien" : $average >= 50 ? "Moyen" : "Insuffisant";
+//      Mon IDE m'a dit que les ternaires imbriqués sont déprécié depuis PHP 7.4 donc j'ai cherché une autre solution  
+//      match est apparament la bonne facon de faire depuis PHP 8.0
+        return match (true) {
+            $average >= 90 => "Excellent",
+            $average >= 75 => "Bien",
+            $average >= 50 => "Moyen",
+            default => "Insuffisant",
+        };
+        
     }
 
     public static function isAdult(Student $student): bool
