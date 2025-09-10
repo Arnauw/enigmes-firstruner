@@ -1,6 +1,8 @@
 <?php
 
-// added this so it render
+// J'ai ajouté ca pour que ca s'affiche bien a la fois dans le terminal
+// quand on fait "php filename" ou dans le navigateur quand on fait
+// un serveur avec "php -S localhost:8000" par exemple.
 if (PHP_SAPI !== 'cli') {
     header('Content-Type: text/plain');
 }
@@ -72,15 +74,13 @@ class StudentUtils
 
     public static function loadStudents(): array
     {
-        $students = [];
-
-        $students[] = new Student("Alice", 20, [15, 18, 12, 14]);
-        $students[] = new Student("Bob", 17, [10, 8, 9, 11]);
-        $students[] = new Student("Charlie", 22, [20, 19, 18, 20]);
-        $students[] = new Student("Diane", 19, [12, 14, 16, 13]);
-        $students[] = new Student("Eve", 16, [7, 6, 5, 8]);
-
-        return $students;
+        return [
+            new Student("Alice", 20, [15, 18, 12, 14]),
+            new Student("Bob", 17, [10, 8, 9, 11]),
+            new Student("Charlie", 22, [20, 19, 18, 20]),
+            new Student("Diane", 19, [12, 14, 16, 13]),
+            new Student("Eve", 16, [7, 6, 5, 8]),
+        ];
     }
 
     public static function displayAll(): void
